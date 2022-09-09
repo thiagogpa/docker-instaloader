@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  instaloader:
+    build: .
+    container_name: instaloader
+    environment:
+      TZ: ${TIMEZONE}
+    volumes:
+      - ${CONFIGDIR}/download:/download
+      - ${CONFIGDIR}/il_args.txt:/il_args.txt
+      - ${CONFIGDIR}/il_targets.txt:/il_targets.txt      
+    restart: unless-stopped
+
+#    labels:
+#      com.centurylinklabs.instaloader.enable: "false"      #Full Exclude False means it will not be checked
+#      com.centurylinklabs.instaloader.monitor-only: "true" #Monitor Only, True means it will check but not update
